@@ -9,8 +9,26 @@
     <body>
            <div>
                 <h2>Bienvenue à l'application To-do List</h2>
-                <input type="text" id="task" placeholder="Ajouter une tâche">
-                <button onclick="validateForm()">Ajouter</button>
+                <input type="text" id="task" placeholder="Ajouter une tâche" required>
+                <input type="date" id="due-date-input" required>
+                <select id="category-input" required> 
+                    <option value="Choisir une catégorie">Choisir une catégorie</option>
+                    <option value="Travail">Travail</option> 
+                    <option value="Personnel">Personnel</option> 
+                    <option value="Autre">Autre</option> 
+                </select>
+                <select id="priority-input" required>
+                    <option value="Choisir une priorité">Choisir une priorité</option>
+                    <option value="Basse">Basse</option>
+                    <option value="Moyenne">Moyenne</option>
+                    <option value="Haute">Haute</option>
+                </select>
+                <button onclick="validateForm()">Ajouter</button> <br>
+                <input type="text" id="search-input" placeholder="Rechercher des tâches" required>
+                                
+                <button onclick="filterTask('all')">Toutes</button>
+                <button onclick="filterTask('completed')">Tâches terminées</button>
+                <button onclick="filterTask('ongoing')">Tâches en cours</button>
                 <h3>La liste des Taches:</h3>
                 <ul id="task-list">
                 </ul>
