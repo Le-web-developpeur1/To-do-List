@@ -102,3 +102,13 @@ li.hide {
     opacity: 1; 
     transform: translateY(0); 
 }
+
+.priority-high { 
+    background-color: #ff4c4c; /* Rouge pour haute priorité */ 
+} 
+.priority-medium { 
+    background-color: #ffcc00; /* Jaune pour priorité moyenne */ 
+} 
+.priority-low { 
+    background-color: #4caf50; /* Vert pour basse priorité */ 
+}

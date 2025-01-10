@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Liste des taches</title>
         <link rel="stylesheet" href="styles.css">
-    </head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">    </head>
     <body>
            <div>
                 <h2>Bienvenue à l'application To-do List</h2>
@@ -29,6 +29,10 @@
                 <button onclick="filterTask('all')">Toutes</button>
                 <button onclick="filterTask('completed')">Tâches terminées</button>
                 <button onclick="filterTask('ongoing')">Tâches en cours</button>
+
+                <button onclick="sortTasks('date')">Trier par date</button>
+                <button onclick="sortTasks('priority')">Trier par priorité</button>
+
                 <h3>La liste des Taches:</h3>
                 <ul id="task-list">
                 </ul>

@@ -15,9 +15,26 @@ function validateForm() {
     const formattedDate = now.toLocaleString();
     
     newTask.textContent = `${taskText} - ${formattedDate} - Échéance : ${dueDate} - ${category} - ${priority}`;
+ 
+    const ediButton = document.createElement('button');
+    ediButton.innerHTML ='<i class="fa-regular fa-pen-to-square"></i>';
+    ediButton.style.fontSize = '15px'
+    // Empêche l'événement de propagation pour éviter de marquer comme terminée.
+    ediButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+    //
+    ediButton.onclick = () => {
+        const newTaskTask = prompt('Modifier la tâche:', taskText);
+        if (newTaskTask !== null) {
+            newTask.firstChild.textContent = newTaskTask;
+        }
+
+    };
 
     const deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Supprimer';
+    deleteButton.innerHTML = '<i class="fa-sharp fa-solid fa-trash"></i>';
+    deleteButton.style.fontSize = '15px'
     deleteButton.onclick = function() {
         taskListe.removeChild(newTask);
     };
@@ -26,17 +43,28 @@ function validateForm() {
         newTask.classList.add('show');
      }, 10); 
 
+    newTask.appendChild(ediButton);
     newTask.appendChild(deleteButton);
-    
+
     newTask.onclick = function() {
         newTask.classList.toggle('completed');
     };
+
+    if (priority === 'Haute') { 
+        newTask.classList.add('priority-high'); 
+    } else if (priority === 'Moyenne') {
+         newTask.classList.add('priority-medium'); 
+        } else if (priority === 'Basse') {
+             newTask.classList.add('priority-low');
+            }
+
 
     taskListe.appendChild(newTask);
     taskInput.value = '';
     dueDateInput.value = '';
     categoryInput.value = 'Choisir une catégorie';
     priorityInput.value = 'Choisir une priorité';
+    
 
 }
 
@@ -75,5 +103,16 @@ function validateForm() {
             });
         }
 
+        function sortTasks (criteria) {
+            const taskListe = document.getElementById('task-list');
+            const tasks = Array.from(taskListe.getElementsByTagName('li'));
+            let sortedTasks;
 
-
+            if (criteria === 'date') {
+                sortedTasks = tasks.sort((a, b) => new Date(a.dataset.dueDate) - new Date(b.dataset.dueDate));
+            } else if (criteria === 'priority') {
+                sortedTasks = tasks.sort((a, b) => a.dataset.priority - b.dataset.priority);
+            }
+            taskListe.innerHTML = '';
+            sortedTasks.forEach(task => taskListe.appendChild(task));
+        }
